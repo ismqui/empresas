@@ -3,13 +3,8 @@ defmodule Empresas.ListEmpresas do
   The list of data about the companies
   """
 
-  alias Empresas.Empresa
-
   def all do
-    [
-      %Empresa{ id: 1, name: "Tamoe innovation", address: "no recuerdo", zip: 28034, city: "Madrid", country: "Spain"},
-      %Empresa{ id: 2, name: "Keylates", address: "no recuerdo", zip: 28034, city: "Madrid", country: "Spain"}
-    ]
+    Empresas.Server.all()
   end
 
   def get(id) do

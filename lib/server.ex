@@ -1,20 +1,28 @@
 defmodule Empresas.Server do
   use GenServer
 
+  alias Empresas.Empresa
   ###
   # External API
   #
   
-  def start(value\\[]) do
-    GenServer.start(__MODULE__, value)
+  def start() do
+    value =
+      [
+        %Empresa{ id: 1, name: "Empresa 1 increible", address: "no recuerdo",
+                 zip: 28034, city: "Madrid", country: "Spain"},
+        %Empresa{ id: 2, name: "Empresa 2 increible", address: "no recuerdo",
+                 zip: 28034, city: "Madrid", country: "Spain"}
+      ]
+    GenServer.start(__MODULE__, value, name: __MODULE__)
   end
 
-  def all(pid) do
-    GenServer.call(pid, :all)
+  def all() do
+    GenServer.call(__MODULE__, :all)
   end
 
-  def put(pid, value) do
-    GenServer.cast(pid, {:put, value})
+  def put(value) do
+    GenServer.cast(__MODULE__, {:put, value})
   end
 
   ###
